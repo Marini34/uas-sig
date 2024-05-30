@@ -44,4 +44,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageAsset()
+    {
+        // if ($this->image) {
+        //     return asset('storage/ImageSpots/'.$this->image);
+        // }
+
+        if ($this->image) {
+            return asset('/upload/spots/'.$this->image);
+        }
+
+        return 'https://placehold.co/150x200?text=No+Image';
+    }
 }

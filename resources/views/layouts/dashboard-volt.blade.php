@@ -84,11 +84,12 @@
                 class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
                 <div class="d-flex align-items-center">
                     <div class="avatar-lg me-4">
-                        <img src="{{ asset('volt/src/assets/img/team/profile-picture-1.jpg') }}"
+                        <img src="{{ isset($userImage)?$userImage:'' }}"
                             class="card-img-top rounded-circle border-white" alt="Bonnie Green">
                     </div>
                     <div class="d-block">
-                        <h2 class="h5 mb-3">Hi, Jane</h2>
+                        <h2 class="h5 mb-0">Hi, {{ $userGlobal->name }}</h2>
+                        <div class="">{{ $userGlobal->email }}</div>
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                             class="btn btn-secondary btn-sm d-inline-flex align-items-center">
@@ -100,9 +101,9 @@
                             </svg>
                             Sign Out
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
-                        </form>
+                        </form> --}}
                     </div>
                 </div>
                 <div class="collapse-close d-md-none">
@@ -132,7 +133,7 @@
                 </li>
 
                 <!--SIDEBAR MENU-->
-                <li class="nav-item {{ Request::routeIs('home') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::routeIs(['welcome','home']) ? 'active' : '' }}">
                     <a href="{{ route('home') }}" class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -145,34 +146,36 @@
                         <span class="sidebar-text">Dashboard</span>
                     </a>
                 </li>
-
-                <li class="nav-item {{ Request::routeIs('users.*') ? 'active' : '' }}">
-                    <a href="{{ route('users.index') }}" class="nav-link d-flex align-items-center">
-                        <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Kelola User</span>
-                    </a>
-                </li>
-
-                <li class="nav-item {{ Request::routeIs('menu.*') ? 'active' : '' }}">
-                    <a href="{{ route('menu.index') }}" class="nav-link d-flex align-items-center">
-                        <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Kelola Menu</span>
-                    </a>
-                </li>
+                @canany(['create-user'])
+                    <li class="nav-item {{ Request::routeIs('users.*') ? 'active' : '' }}">
+                        <a href="{{ route('users.index') }}" class="nav-link d-flex align-items-center">
+                            <span class="sidebar-icon">
+                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+                            <span class="sidebar-text">Kelola User</span>
+                        </a>
+                    </li>
+                @endcanany
+                @canany(['create-menu'])
+                    <li class="nav-item {{ Request::routeIs('menu.*') ? 'active' : '' }}">
+                        <a href="{{ route('menu.index') }}" class="nav-link d-flex align-items-center">
+                            <span class="sidebar-icon">
+                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+                            <span class="sidebar-text">Kelola Menu</span>
+                        </a>
+                    </li>
+                @endcanany
 
                 <li class="nav-item {{ Request::routeIs('pesanan.*') ? 'active' : '' }}">
                     <a href="{{ route('pesanan.index') }}" class="nav-link d-flex align-items-center">
@@ -187,7 +190,7 @@
                         <span class="sidebar-text">Pesanan</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#submenu-app">
                         <span>
@@ -373,7 +376,7 @@
 
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
                 <!--SIDEBAR MENU-->
 
@@ -411,7 +414,7 @@
                     </div>
                     <!-- Navbar links -->
                     <ul class="navbar-nav align-items-center">
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link text-dark notification-bell unread dropdown-toggle"
                                 data-unread-notifications="true" href="#" role="button"
                                 data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
@@ -548,20 +551,26 @@
                                     </a>
                                 </div>
                             </div>
-                        </li>
-                        <li class="nav-item dropdown ms-lg-3">
-                            <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button"
+                        </li> --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle pt-1 px-0 d-flex" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path
+                                        d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
+                                </svg> --}}
                                 <div class="media d-flex align-items-center">
                                     <img class="avatar rounded-circle" alt="Image placeholder"
-                                        src="{{ asset('volt/html&css/assets/img/team/profile-picture-3.jpg') }}">
-                                    <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                        <span class="mb-0 font-small fw-bold text-gray-900">Bonnie Green</span>
+                                        src="{{ $userImage }}">
+                                    <div class="media-body ms-2 text-dark align-items-center d-none d-xl-block">
+                                        <div class="mb-0 font-small fw-bold text-gray-900">{{ $userGlobal->name }}
+                                        </div>
+                                        <div class="mb-0 font-small text-gray-900">{{ $userGlobal->email }}</div>
                                     </div>
                                 </div>
                             </a>
                             <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                {{-- <a class="dropdown-item d-flex align-items-center" href="#">
                                     <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor"
                                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -596,7 +605,7 @@
                                             clip-rule="evenodd"></path>
                                     </svg>
                                     Support
-                                </a>
+                                </a> --}}
                                 <div role="separator" class="dropdown-divider my-1"></div>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -622,7 +631,7 @@
         <!--HEADER NAV-->
 
         <!--DROPDOWN MENU-->
-        <div class="py-4">
+        {{-- <div class="py-4">
             <div class="dropdown">
                 <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -683,7 +692,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--DROPDOWN MENU-->
 
         <!--DISPLAY CONTENT-->
