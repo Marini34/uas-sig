@@ -45,7 +45,6 @@ class SpotController extends Controller
 
         $spot = new Spot;
         if ($request->hasFile('image')) {
-
             /**
              * Upload file to public folder
              */

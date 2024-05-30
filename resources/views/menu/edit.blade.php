@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <a href="{{ route('menu.index') }}" class="text-center">
-                <button type="submit" class="btn btn-primary btn-sm m-2">
+                <button class="btn btn-primary btn-sm m-2">
                 <i class='fas fa-angle-double-left' style='font-size:;color:'></i>
                 Back</button>
             </a>
@@ -50,7 +50,7 @@
                             </div>
 
                             <div class="form-group my-3">
-                                <label for="">Upload Gambar</label>
+                                <label for="gambar">Upload Gambar</label>
                                 <input type="file"
                                     class="form-control @error('gambar')
                                     is-invalid

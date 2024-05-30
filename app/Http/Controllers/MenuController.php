@@ -102,7 +102,7 @@ class MenuController extends Controller
             $file = $request->file('gambar');
             $uploadFile = $file->hashName();
             $file->move('upload/spots/', $uploadFile);
-            $menu->menu = $uploadFile;
+            $menu->gambar = $uploadFile;
         }
 
         $menu->nama = $request->input('nama');

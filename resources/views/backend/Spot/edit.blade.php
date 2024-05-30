@@ -50,11 +50,11 @@
                             </div>
 
                             <div class="form-group my-3">
-                                <label for="">Upload Gambar</label>
+                                <label for="image">Upload Gambar</label>
                                 <img src="{{ $spot->getImageAsset() }}" alt="">
                                 <input type="file" class="form-control @error('image')
                                     is-invalid
-                                @enderror" name="image" >
+                                @enderror" name="image" id="image">
                                 @error('image')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

@@ -46,6 +46,13 @@ class DatabaseSeeder extends Seeder
             'coordinates' => '-0.07594398265588857, 109.36148888980208'
         ]);
 
+        \App\Models\Spot::create([
+            'name' => 'Ayani Megamall',
+            'slug' => 'ayani-megamall',
+            'coordinates' => '-0.051521344763126184, 109.34559593083563',
+            'description' => 'Pusat perbelanjaan bertingkat yang bernuansa santai ini memiliki berbagai toko retail & opsi bersantap kasual.'
+        ]);
+
         \App\Models\Menu::create([
             'nama' => 'Food',
             'gambar' => 'food.png',
