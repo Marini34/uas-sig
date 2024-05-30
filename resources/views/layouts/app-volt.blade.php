@@ -69,14 +69,14 @@
 <script src="{{ asset('volt/html&css/vendor/onscreen/dist/on-screen.umd.min.js') }}"></script>
 
 <!-- Slider -->
-<script src="{{ asset('volt/html&css/vendor/nouislider/distribute/nouislider.min.js') }}"></script>
+<script src="{{ asset('volt/html&css/vendor/nouislider/dist/nouislider.min.js') }}"></script>
 
 <!-- Smooth scroll -->
 <script src="{{ asset('volt/html&css/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
 
 <!-- Charts -->
-<script src="{{ asset('volt/hmtl&css/vendor/chartist/dist/chartist.min.js') }}"></script>
-<script src="{{ asset('volt/hmlt&css/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
+<script src="{{ asset('volt/html&css/vendor/chartist/dist/chartist.min.js') }}"></script>
+<script src="{{ asset('volt/html&css/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
 
 <!-- Datepicker -->
 <script src="{{ asset('volt/html&css/vendor/vanillajs-datepicker/dist/js/datepicker.min.js') }}"></script>
@@ -100,7 +100,7 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <!-- Volt JS -->
-<script src="{{ asset('volt/hmtl&css/assets/js/volt.js') }}"></script>
+<script src="{{ asset('volt/html&css/assets/js/volt.js') }}"></script>
 
     
 </body>

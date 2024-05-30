@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Centre_Point;
+use App\Models\CenterPoint;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -35,7 +35,7 @@ class CentrePointController extends Controller
             'coordinate' => 'required'
         ]);
 
-        $centerPoint = new Centre_Point;
+        $centerPoint = new CenterPoint;
         $centerPoint->coordinates = $request->input('coordinate');
         $centerPoint->save();
 
@@ -57,18 +57,18 @@ class CentrePointController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Centre_Point $centrePoint)
+    public function edit(CenterPoint $centrePoint)
     {
-        $centrePoint = Centre_Point::findOrFail($centrePoint->id);
+        $centrePoint = CenterPoint::findOrFail($centrePoint->id);
         return view('backend.CentrePoint.edit',['centrePoint' => $centrePoint]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Centre_Point $centrePoint)
+    public function update(Request $request, CenterPoint $centrePoint)
     {
-        $centrePoint = Centre_Point::findOrFail($centrePoint->id);
+        $centrePoint = CenterPoint::findOrFail($centrePoint->id);
         $centrePoint->coordinates = $request->input('coordinate');
         $centrePoint->update();
 
@@ -84,7 +84,7 @@ class CentrePointController extends Controller
      */
     public function destroy($id)
     {
-        $centrePoint = Centre_Point::findOrFail($id);
+        $centrePoint = CenterPoint::findOrFail($id);
         $centrePoint->delete();
         return redirect()->back();
     }

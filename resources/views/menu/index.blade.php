@@ -10,8 +10,8 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
-                        List Spot
-                        <a href="{{ route('spot.create') }}" class="btn btn-info btn-sm float-end">Add new spot</a>
+                        List Menu
+                        <a href="{{ route('menu.create') }}" class="btn btn-info btn-sm float-end">Add new Menu</a>
                     </div>
                     <div class="card-body">
                         
@@ -27,11 +27,12 @@
                             </div>
                         @endif
 
-                        <table class="table" id="dataSpot">
+                        <table class="table" id="dataMenu">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Spot</th>
+                                    <th>Nama Menu</th>
+                                    <th>Harga</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -54,19 +55,21 @@
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(function() {
-            $('#dataSpot').DataTable({
+            $('#dataMenu').DataTable({
                 processing: true,
                 serverSide: true,
                 responisve: true,
                 lengthChange: true,
                 autoWidth: false,
-                ajax: '{{ route('spot.data') }}',
+                ajax: '{{ route('menu.data') }}',
                 columns: [{
                         data: 'DT_RowIndex',
                         orderable: false,
                         searchable: false
                     }, {
-                        data: 'name'
+                        data: 'nama'
+                    }, {
+                        data: 'harga'
                     },
                     {
                         data: 'action'
@@ -76,3 +79,4 @@
         })
     </script>
 @endpush
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CenterPoint;
 use App\Models\Centre_Point;
 use App\Models\Spot;
 use Illuminate\Http\Request;
@@ -80,7 +81,7 @@ class HomeController extends Controller
 
     public function spots()
     {
-        $centerPoint = Centre_Point::get()->first();
+        $centerPoint = CenterPoint::get()->first();
         $spot = Spot::get();
 
         return view('frontend.home',[
@@ -95,4 +96,8 @@ class HomeController extends Controller
         return view('frontend.detail',['spot' => $spot]);
     }
     
+    public function menu()
+    {
+        return view('menu.index');
+    }
 }

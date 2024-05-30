@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',[\App\Http\Controllers\HomeController::class,'spots']);
+
+Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 Route::get('/detail-spot/{slug}',[\App\Http\Controllers\HomeController::class,'detailSpot'])->name('detail-spot');
 
 Auth::routes();
@@ -26,4 +28,18 @@ Route::middleware(['auth'])->group(function(){
     
     Route::resource('centre-point',(\App\Http\Controllers\Backend\CentrePointController::class));
     Route::resource('spot',(\App\Http\Controllers\Backend\SpotController::class));
+
+    #MANAGE menu User
+    // Route::get('/menu', [App\Http\Controllers\HomeController::class, 'menu'])->name('menu'); 
+    Route::get('/menu/data',[\App\Http\Controllers\Backend\DataController::class,'menu'])->name('menu.data');
+    Route::get('/menu/clean',[\App\Http\Controllers\Backend\DataController::class,'clean'])->name('menu.clean');
+    
+    Route::get('/users/data',[\App\Http\Controllers\Backend\DataController::class,'user'])->name('users.data');
+    Route::resources([
+        'menu' => \App\Http\Controllers\MenuController::class,
+        'users' => \App\Http\Controllers\UserController::class
+    ]);
+    Route::get('pesanan', [\App\Http\Controllers\MenuController::class, 'pesanan'])->name('pesanan.index');
+
+    
 });

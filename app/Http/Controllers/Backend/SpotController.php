@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Centre_Point;
+use App\Models\CenterPoint;
 use App\Models\Spot;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class SpotController extends Controller
      */
     public function create()
     {
-        $centerPoint = Centre_Point::get()->first();
+        $centerPoint = CenterPoint::get()->first();
         return view('backend.Spot.create', ['centerPoint' => $centerPoint]);
     }
 
@@ -88,7 +88,7 @@ class SpotController extends Controller
      */
     public function edit(Spot $spot)
     {
-        $centerPoint = Centre_Point::get()->first();
+        $centerPoint = CenterPoint::get()->first();
         return view('backend.Spot.edit', [
             'centerPoint' => $centerPoint,
             'spot' => $spot
