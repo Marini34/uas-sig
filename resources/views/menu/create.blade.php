@@ -33,9 +33,6 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
-                            men
-
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-sm my-2">Simpan</button>
                             </div>

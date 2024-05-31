@@ -55,4 +55,13 @@ class DataController extends Controller
         ->rawColumns(['action'])
         ->toJson();
     }
+
+    public function lokasi() {
+        $lokasi = \App\Models\Lokasi::latest()->get();
+        return datatables()->of($lokasi)
+        ->addColumn('action','lokasi.action')
+        ->addIndexColumn()
+        ->rawColumns(['action'])
+        ->toJson();
+    }
 }

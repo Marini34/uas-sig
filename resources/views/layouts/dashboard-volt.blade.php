@@ -84,7 +84,7 @@
                 class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
                 <div class="d-flex align-items-center">
                     <div class="avatar-lg me-4">
-                        <img src="{{ isset($userImage)?$userImage:'' }}"
+                        <img src="{{ isset($userImage) ? $userImage : '' }}"
                             class="card-img-top rounded-circle border-white" alt="Bonnie Green">
                     </div>
                     <div class="d-block">
@@ -128,12 +128,12 @@
                             <img src="{{ asset('volt/html&css/assets/img/brand/light.svg') }}" height="20"
                                 width="20" alt="Volt Logo">
                         </span>
-                        <span class="mt-1 ms-1 sidebar-text">Volt Overview</span>
+                        <span class="mt-1 ms-1 sidebar-text">Simulasi Cari Hotel</span>
                     </a>
                 </li>
 
                 <!--SIDEBAR MENU-->
-                <li class="nav-item {{ Request::routeIs(['welcome','home']) ? 'active' : '' }}">
+                <li class="nav-item {{ Request::routeIs(['welcome', 'home']) ? 'active' : '' }}">
                     <a href="{{ route('home') }}" class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -146,241 +146,24 @@
                         <span class="sidebar-text">Dashboard</span>
                     </a>
                 </li>
-                @canany(['create-user'])
-                    <li class="nav-item {{ Request::routeIs('users.*') ? 'active' : '' }}">
-                        <a href="{{ route('users.index') }}" class="nav-link d-flex align-items-center">
-                            <span class="sidebar-icon">
-                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="sidebar-text">Kelola User</span>
-                        </a>
-                    </li>
-                @endcanany
-                @canany(['create-menu'])
-                    <li class="nav-item {{ Request::routeIs('menu.*') ? 'active' : '' }}">
-                        <a href="{{ route('menu.index') }}" class="nav-link d-flex align-items-center">
-                            <span class="sidebar-icon">
-                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="sidebar-text">Kelola Menu</span>
-                        </a>
-                    </li>
-                @endcanany
 
-                <li class="nav-item {{ Request::routeIs('pesanan.*') ? 'active' : '' }}">
-                    <a href="{{ route('pesanan.index') }}" class="nav-link d-flex align-items-center">
-                        <span class="sidebar-icon">
-                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Pesanan</span>
+                <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
+                <li class="nav-item w-100">
+                    <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+
+                        <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                            </path>
+                        </svg>
+                        Logout
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
-                {{-- <li class="nav-item">
-                    <span class="nav-link  collapsed  d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#submenu-app">
-                        <span>
-                            <span class="sidebar-icon">
-                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="sidebar-text">GIS Basic</span>
-                        </span>
-                        <span class="link-arrow">
-                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                    </span>
-                    <div class="multi-level collapse " role="list" id="submenu-app" aria-expanded="false">
-                        <ul class="flex-column nav">
-                            <li class="nav-item {{ Request::is('home') ? 'active' : '' }}">
-                                <a href="{{ route('home') }}" class="nav-link">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-home"></i>
-                                    </span>
-                                    <span class="sidebar-text">Dashboard</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item {{ Request::is('simple-map') ? 'active' : '' }}">
-                                <a href="{{ route('simple-map') }}" class="nav-link ">
-                                    <span class="sidebar-icon ">
-                                        <i class="fas fa-map"></i>
-                                    </span>
-                                    <span class="sidebar-text">Simple Map</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item 
-                            {{ Request::is('markers') ? 'active' : '' }}
-                            ">
-                                <a href="{{ route('markers') }}" class="nav-link ">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-map-marker"></i>
-                                    </span>
-                                    <span class="sidebar-text">Markers</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item 
-                            {{ Request::is('circle') ? 'active' : '' }}
-                            ">
-                                <a href="{{ route('circle') }}" class="nav-link ">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-circle"></i>
-                                    </span>
-                                    <span class="sidebar-text">Circle</span>
-                                </a>
-                            </li>
-            
-                            <li class="nav-item 
-                            {{ Request::is('polygon') ? 'active' : '' }}
-                            ">
-                                <a href="{{ route('polygon') }}" class="nav-link ">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-draw-polygon"></i>
-                                    </span>
-                                    <span class="sidebar-text">Polygon</span>
-                                </a>
-                            </li>
-            
-                            <li class="nav-item 
-                            {{ Request::is('polyline') ? 'active' : '' }}
-                            ">
-                                <a href="{{ route('polyline') }}" class="nav-link ">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-draw-polygon"></i>
-                                    </span>
-                                    <span class="sidebar-text">Polyline</span>
-                                </a>
-                            </li>
-            
-                            <li class="nav-item 
-                            {{ Request::is('rectangle') ? 'active' : '' }}
-                            ">
-                                <a href="{{ route('rectangle') }}" class="nav-link ">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-draw-polygon"></i>
-                                    </span>
-                                    <span class="sidebar-text">Rectangle</span>
-                                </a>
-                            </li>
-            
-                            <li class="nav-item 
-                            {{ Request::is('layer') ? 'active' : '' }}
-                            ">
-                                <a href="{{ route('layer') }}" class="nav-link ">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-draw-polygon"></i>
-                                    </span>
-                                    <span class="sidebar-text">Layer Control</span>
-                                </a>
-                            </li>
-            
-                            <li
-                                class="nav-item 
-                            {{ Request::is('layer-group') ? 'active' : '' }}
-                            ">
-                                <a href="{{ route('layer-group') }}" class="nav-link ">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-draw-polygon"></i>
-                                    </span>
-                                    <span class="sidebar-text">Layer Group</span>
-                                </a>
-                            </li>
-            
-                            <li class="nav-item 
-                            {{ Request::is('geojson') ? 'active' : '' }}
-                            ">
-                                <a href="{{ route('geojson') }}" class="nav-link ">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-draw-polygon"></i>
-                                    </span>
-                                    <span class="sidebar-text">Geojson</span>
-                                </a>
-                            </li>
-            
-                            <li
-                                class="nav-item 
-                            {{ Request::is('getCoordinate') ? 'active' : '' }}
-                            ">
-                                <a href="{{ route('getCoordinate') }}" class="nav-link ">
-                                    <span class="sidebar-icon">
-                                        <i class="fas fa-draw-polygon"></i>
-                                    </span>
-                                    <span class="sidebar-text">Get Coordinate</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <span class="nav-link collapsed  d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#submenu-components">
-                        <span>
-                            <span class="sidebar-icon">
-                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path>
-                                    <path fill-rule="evenodd"
-                                        d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <span class="sidebar-text">Manage Data</span>
-                        </span>
-                        <span class="link-arrow">
-                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                    </span>
-                    <div class="multi-level collapse " role="list" id="submenu-components" aria-expanded="false">
-                        <ul class="flex-column nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('centre-point.index') }}">
-                                    <span class="sidebar-text">Center Point</span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="{{ route('spot.index') }}">
-                                    <span class="sidebar-text">Spot</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </li> --}}
-
-                <!--SIDEBAR MENU-->
-
-                {{-- <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li> --}}
             </ul>
             <!--HEADER NAV-->
 
@@ -570,42 +353,6 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-                                {{-- <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor"
-                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                    My Profile
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor"
-                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor"
-                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h10v7h-2l-1 2H8l-1-2H5V5z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                    Messages
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor"
-                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                    Support
-                                </a> --}}
                                 <div role="separator" class="dropdown-divider my-1"></div>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">

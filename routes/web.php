@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
+Route::get('/',[\App\Http\Controllers\HomeController::class,'index'])->name('welcome');
 Route::get('/detail-spot/{slug}',[\App\Http\Controllers\HomeController::class,'detailSpot'])->name('detail-spot');
 
 Auth::routes();
@@ -35,11 +35,12 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/menu/clean',[\App\Http\Controllers\Backend\DataController::class,'clean'])->name('menu.clean');
     
     Route::get('/users/data',[\App\Http\Controllers\Backend\DataController::class,'user'])->name('users.data');
+    Route::get('/lokasi/data', [\App\Http\Controllers\Backend\DataController::class,'lokasi'])->name('lokasi.data');
     Route::resources([
         'menu' => \App\Http\Controllers\MenuController::class,
-        'users' => \App\Http\Controllers\UserController::class
+        'users' => \App\Http\Controllers\UserController::class,
+        'lokasi' => \App\Http\Controllers\LokasiController::class
     ]);
     Route::get('pesanan', [\App\Http\Controllers\MenuController::class, 'pesanan'])->name('pesanan.index');
 
-    
 });

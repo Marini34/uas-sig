@@ -20,17 +20,23 @@ class RoleSeeder extends Seeder
         $pelanggan = Role::create(['name' => 'Pelanggan']);
 
         $admin->givePermissionTo([
+            'cari',
+
             'create-user',
             'edit-user',
             'delete-user',
-            'create-menu',
-            'edit-menu',
-            'delete-menu',
-            'show-pesan'
+            // 'create-menu',
+            // 'edit-menu',
+            // 'delete-menu',
+            // 'show-pesan'
+
+            'create-lokasi',
+            'edit-lokasi',
+            'delete-lokasi'
         ]);
 
         $pelanggan->givePermissionTo([
-            'show-pesan'
+            'cari'
         ]);
     }
 }

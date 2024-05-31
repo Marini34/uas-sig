@@ -9,7 +9,7 @@
                         <i class='fas fa-angle-double-left' style='font-size:;color:'></i>
                         Back</button>
                 </a>
-                <div>Update Data: <span class="fw-bold fs-3">{{ $user->name }}</span></div>
+                <div>Show Data: <span class="fw-bold fs-3">{{ $user->name }}</span></div>
             </div>
             <div class="col-md-6">
                 <div class="card">
@@ -21,7 +21,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('users.update', $user->id) }}" method="get" class="row">
+                        <form>
                             @csrf
                             <div class="form-group col-md-6 mb-3">
                                 <label for="name">Nama</label>
